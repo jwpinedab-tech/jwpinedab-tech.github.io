@@ -584,20 +584,20 @@
     <div>
       <div class="about-stats">
         <div class="stat-box">
-          <div class="stat-val">3+</div>
-          <div class="stat-label">proyectos en producción</div>
+          <div class="stat-val">6+</div>
+          <div class="stat-label">proyectos desarrollados</div>
         </div>
         <div class="stat-box">
           <div class="stat-val">GKE</div>
-          <div class="stat-label">despliegue real en cloud</div>
+          <div class="stat-label">despliegue en producción</div>
         </div>
         <div class="stat-box">
-          <div class="stat-val">&lt;2s</div>
-          <div class="stat-label">latencia agente IA → IoT</div>
+          <div class="stat-val">4+</div>
+          <div class="stat-label">tecnologías cloud dominadas</div>
         </div>
         <div class="stat-box">
-          <div class="stat-val">$24M</div>
-          <div class="stat-label">CLP proyección año 1</div>
+          <div class="stat-val">IA</div>
+          <div class="stat-label">agentes LLM en producción</div>
         </div>
       </div>
     </div>
@@ -659,26 +659,12 @@
   <div class="projects-grid reveal">
 
     <div class="project-card featured">
-      <span class="p-tag ai">IA + IoT + Cloud</span>
+      <span class="p-tag ai">IA · IoT · Cloud</span>
       <h3 class="p-title">Domótica Pro</h3>
-      <p class="p-desc">Sistema profesional de automatización del hogar con agente IA conversacional en español. Procesa comandos de voz con Gemini API y controla dispositivos físicos en tiempo real vía MQTT. Desplegado en GKE.</p>
+      <p class="p-desc">Sistema de automatización del hogar con agente IA conversacional en español. Procesa comandos de voz mediante Gemini API y controla dispositivos físicos en tiempo real vía protocolo MQTT. Desplegado en Google Cloud Kubernetes Engine.</p>
       <div class="p-stack">
         <span>Python 3.12</span><span>Gemini API</span><span>FastAPI</span>
         <span>MQTT</span><span>Home Assistant</span><span>Docker</span><span>GKE</span>
-      </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">&lt;2s</span>
-          <span class="p-metric-label">latencia total</span>
-        </div>
-        <div class="p-metric">
-          <span class="p-metric-val">$24M+</span>
-          <span class="p-metric-label">CLP proyección año 1</span>
-        </div>
-        <div class="p-metric">
-          <span class="p-metric-val">live</span>
-          <span class="p-metric-label">en producción GKE</span>
-        </div>
       </div>
       <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
         <a href="https://github.com/2080bp/domotica-pro" target="_blank" class="btn btn-primary" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
@@ -686,17 +672,48 @@
     </div>
 
     <div class="project-card">
-      <span class="p-tag edu">EdTech · IA</span>
+      <span class="p-tag ai">Django · IA</span>
+      <h3 class="p-title">App Psicólogos & Pacientes</h3>
+      <p class="p-desc">Plataforma web para gestión de consultas psicológicas. Incluye agendamiento de citas, historial clínico por paciente e inteligencia artificial para seguimiento terapéutico. Desarrollada con Django y Gemini API.</p>
+      <div class="p-stack">
+        <span>Django</span><span>Python</span><span>Gemini API</span><span>PostgreSQL</span><span>Google Cloud</span>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--accent);padding:4px 10px;border:1px solid var(--border2);border-radius:2px">En desarrollo</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag ai">IA · LLM · Chatbot</span>
+      <h3 class="p-title">Boot Chat</h3>
+      <p class="p-desc">Agente conversacional basado en LLM con lógica de negocio personalizada. Flujos de conversación adaptativos, respuestas contextuales y arquitectura modular para diferentes industrias.</p>
+      <div class="p-stack">
+        <span>Python</span><span>LangChain</span><span>Gemini API</span><span>FastAPI</span><span>Firebase</span>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--accent);padding:4px 10px;border:1px solid var(--border2);border-radius:2px">En desarrollo</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag web">E-commerce · Cloud</span>
+      <h3 class="p-title">2080.store</h3>
+      <p class="p-desc">Tienda online operativa con pasarelas de pago integradas y gestión de clientes. Migración completa a Google Cloud Hosting con configuración de SSL, DNS y optimización de rendimiento.</p>
+      <div class="p-stack">
+        <span>WordPress</span><span>WooCommerce</span><span>Google Cloud</span>
+        <span>SSL/TLS</span><span>DNS</span><span>Payment APIs</span>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://2080.store" target="_blank" class="btn btn-primary" style="font-size:11px;padding:5px 12px">Ver sitio ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag edu">EdTech · Frontend</span>
       <h3 class="p-title">App Educacional</h3>
-      <p class="p-desc">Aplicación educacional interactiva desarrollada durante el bootcamp. Interfaz dinámica con jQuery y lógica de aprendizaje progresivo. Base para la futura versión con IA y repetición espaciada para TDAH.</p>
+      <p class="p-desc">Aplicación educacional interactiva con interfaz dinámica y lógica de aprendizaje progresivo. Base para futura versión con IA y algoritmo de repetición espaciada orientada a adultos con TDAH.</p>
       <div class="p-stack">
         <span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span>
-      </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">live</span>
-          <span class="p-metric-label">en GitHub</span>
-        </div>
       </div>
       <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
         <a href="https://github.com/jwpinedab-tech/app-educacional" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
@@ -704,76 +721,14 @@
     </div>
 
     <div class="project-card">
-      <span class="p-tag web">Web · jQuery</span>
+      <span class="p-tag web">Frontend · jQuery</span>
       <h3 class="p-title">Billetera Digital</h3>
-      <p class="p-desc">Aplicación de billetera digital con jQuery. Gestión de transacciones, saldos y movimientos con interfaz dinámica. Proyecto del bootcamp demostrando manejo del DOM y lógica financiera.</p>
+      <p class="p-desc">Aplicación de gestión financiera personal con manejo de transacciones, saldos y movimientos. Interfaz dinámica con jQuery demostrando manipulación del DOM y lógica de negocio financiera.</p>
       <div class="p-stack">
         <span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span>
       </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">live</span>
-          <span class="p-metric-label">en GitHub</span>
-        </div>
-      </div>
       <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
         <a href="https://github.com/jwpinedab-tech/L6_Billetera_JQuery_V2" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
-        <a href="https://github.com/jwpinedab-tech/proyecto_web_basico" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Proyecto web ↗</a>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="p-tag ai">Django · IA · En desarrollo</span>
-      <h3 class="p-title">App Psicólogos & Pacientes</h3>
-      <p class="p-desc">Plataforma web que conecta psicólogos con pacientes, con gestión de citas, historial clínico y soporte de inteligencia artificial para seguimiento terapéutico. Desarrollada con Django y Gemini API.</p>
-      <div class="p-stack">
-        <span>Django</span><span>Python</span><span>Gemini API</span><span>PostgreSQL</span><span>Google Cloud</span>
-      </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">2025</span>
-          <span class="p-metric-label">en proyección activa</span>
-        </div>
-      </div>
-      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
-        <span style="font-family:var(--mono);font-size:11px;color:var(--accent3);padding:4px 10px;border:1px solid rgba(200,245,66,.3);border-radius:2px">en desarrollo ↗</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="p-tag ai">IA · Chatbot · En desarrollo</span>
-      <h3 class="p-title">Boot Chat</h3>
-      <p class="p-desc">Agente conversacional inteligente especializado en acompañamiento y orientación. Integra modelos LLM con lógica de negocio personalizada para respuestas contextuales y flujos de conversación adaptativos.</p>
-      <div class="p-stack">
-        <span>Python</span><span>LangChain</span><span>Gemini API</span><span>FastAPI</span><span>Firebase</span>
-      </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">2025</span>
-          <span class="p-metric-label">en proyección activa</span>
-        </div>
-      </div>
-      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
-        <span style="font-family:var(--mono);font-size:11px;color:var(--accent3);padding:4px 10px;border:1px solid rgba(200,245,66,.3);border-radius:2px">en desarrollo ↗</span>
-      </div>
-    </div>
-      <p class="p-desc">Tienda online operativa con integración de pasarelas de pago y gestión de datos de clientes. Migración completa desde Tienda Nube a Google Cloud Hosting con resolución de SSL y configuración DNS.</p>
-      <div class="p-stack">
-        <span>WordPress</span><span>WooCommerce</span><span>Google Cloud</span>
-        <span>SSL/TLS</span><span>DNS</span><span>Payment APIs</span>
-      </div>
-      <div class="p-metrics">
-        <div class="p-metric">
-          <span class="p-metric-val">live</span>
-          <span class="p-metric-label">2080.store</span>
-        </div>
-        <div class="p-metric">
-          <span class="p-metric-val">0-down</span>
-          <span class="p-metric-label">migración exitosa</span>
-        </div>
-      </div>
-      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
-        <a href="https://2080.store" target="_blank" class="btn btn-primary" style="font-size:11px;padding:5px 12px">Ver tienda ↗</a>
       </div>
     </div>
 
@@ -799,20 +754,20 @@
 
     <div class="metrics-strip">
       <div class="m-cell">
-        <div class="m-val">&lt;2s</div>
-        <div class="m-lbl">comando → acción dispositivo</div>
+        <div class="m-val">Python</div>
+        <div class="m-lbl">lenguaje principal</div>
       </div>
       <div class="m-cell">
         <div class="m-val">3</div>
         <div class="m-lbl">capas integradas LLM + MQTT + HA</div>
       </div>
       <div class="m-cell">
-        <div class="m-val">$24M</div>
-        <div class="m-lbl">CLP proyección ingresos año 1</div>
+        <div class="m-val">GKE</div>
+        <div class="m-lbl">desplegado en producción</div>
       </div>
       <div class="m-cell">
-        <div class="m-val">GKE</div>
-        <div class="m-lbl">despliegue en producción real</div>
+        <div class="m-val">REST</div>
+        <div class="m-lbl">arquitectura de API</div>
       </div>
     </div>
 
@@ -929,56 +884,88 @@
 <section id="servicios" style="max-width:1100px">
   <div class="sec-header reveal">
     <div class="sec-number">// 05</div>
-    <h2 class="sec-title">Soluciones digitales para <em>profesionales</em></h2>
+    <h2 class="sec-title">Servicios para <em>empresas y profesionales</em></h2>
     <div class="sec-rule"></div>
   </div>
 
-  <p style="font-size:15px;color:var(--txt2);max-width:620px;margin-bottom:2.5rem;line-height:1.8" class="reveal">
-    Desarrollo soluciones tecnológicas a medida para profesionales y empresas que necesitan presencia digital de alto nivel, automatización de procesos y aplicaciones con inteligencia artificial integrada.
+  <p style="font-size:15px;color:var(--txt2);max-width:640px;margin-bottom:.8rem;line-height:1.8" class="reveal">
+    Soluciones digitales a medida para profesionales independientes y pequeñas empresas que necesitan presencia digital, automatización o inteligencia artificial — sin complejidad, sin agencias, con resultados reales.
   </p>
+  <div style="font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(100,255,218,.05);border:1px solid rgba(100,255,218,.15);padding:.6rem 1rem;border-radius:2px;margin-bottom:2.5rem;display:inline-block" class="reveal">
+    * Cada proyecto es único. Los tiempos y valores dependen del alcance y requerimientos específicos de cada cliente.
+  </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem" class="reveal">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem" class="reveal">
 
-    <div style="background:var(--bg2);padding:1.8rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">PRESENCIA DIGITAL</div>
-      <h3 style="font-family:var(--serif);font-size:18px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Sitios web y portafolios profesionales</h3>
-      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:1rem">Diseño y desarrollo de sitios web y portafolios digitales de alto impacto. Optimizados para posicionamiento, conversión de clientes y proyección de marca personal.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:4px">
+    <!-- SERVICIO 1 -->
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s;position:relative" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent)"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">01 — MÁS SOLICITADO</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Sitio web profesional<br>con IA integrada</h3>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Diseño y desarrollo de sitios web modernos, rápidos y optimizados. Incluye chatbot de atención con IA, formulario de contacto, versión móvil y posicionamiento en Google. Entrega en 48–72 horas.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:1.2rem">
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Abogados</span>
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Médicos</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Psicólogos</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Brokers</span>
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Educadores</span>
-        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Inmobiliarias</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Consultores</span>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--accent)">Desde 48 hrs</span>
+        <a href="mailto:ventas@2080.store" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Cotizar ↗</a>
       </div>
     </div>
 
-    <div style="background:var(--bg2);padding:1.8rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">INTELIGENCIA ARTIFICIAL</div>
-      <h3 style="font-family:var(--serif);font-size:18px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Apps con IA integrada para tu industria</h3>
-      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:1rem">Aplicaciones inteligentes con asistentes virtuales, gestión de agenda, seguimiento de pacientes o clientes, y generación automática de reportes y documentos.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:4px">
+    <!-- SERVICIO 2 -->
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s;position:relative" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent2)"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:2px;margin-bottom:.8rem">02 — ALTO IMPACTO</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Chatbot con IA para<br>WhatsApp o sitio web</h3>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Asistente inteligente que responde consultas, agenda citas y califica leads automáticamente las 24 horas. Se integra con WhatsApp Business API o directamente en tu sitio web. Sin intervención manual.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:1.2rem">
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Clínicas</span>
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Estudios jurídicos</span>
-        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Colegios</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Inmobiliarias</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Comercio</span>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--accent2)">Impl. + mantenimiento</span>
+        <a href="mailto:ventas@2080.store" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Cotizar ↗</a>
       </div>
     </div>
 
-    <div style="background:var(--bg2);padding:1.8rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">AUTOMATIZACIÓN</div>
-      <h3 style="font-family:var(--serif);font-size:18px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Automatización de procesos y gestión digital</h3>
-      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:1rem">Sistemas que eliminan tareas repetitivas: agendamiento automático, envío de recordatorios, generación de contratos, reportes de ventas y gestión documental inteligente.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:4px">
-        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Brokers</span>
+    <!-- SERVICIO 3 -->
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s;position:relative" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent3)"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent3);letter-spacing:2px;margin-bottom:.8rem">03 — INGRESO RECURRENTE</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Contenido para redes sociales<br>generado con IA</h3>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Producción mensual de contenido profesional para LinkedIn, Instagram y Facebook. La IA genera textos, ideas y estructuras adaptadas a tu industria. Entrega de calendario de contenido listo para publicar.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:1.2rem">
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Todos los profesionales</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Pymes</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Emprendedores</span>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--accent3)">Suscripción mensual</span>
+        <a href="mailto:ventas@2080.store" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Cotizar ↗</a>
+      </div>
+    </div>
+
+    <!-- SERVICIO 4 -->
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s;position:relative" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--border2)"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--txt2);letter-spacing:2px;margin-bottom:.8rem">04 — IMAGEN PROFESIONAL</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Optimización LinkedIn<br>+ CV profesional</h3>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Reescritura del perfil LinkedIn con palabras clave de tu industria, banner profesional personalizado y CV en formato PDF de alto impacto. Entrega express en 24 horas.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:1.2rem">
         <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Ejecutivos</span>
-        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Clínicas</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Profesionales</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Emprendedores</span>
       </div>
-    </div>
-
-    <div style="background:var(--bg2);padding:1.8rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">MICROSERVICIOS</div>
-      <h3 style="font-family:var(--serif);font-size:18px;font-weight:600;font-style:italic;margin-bottom:.7rem;line-height:1.2">Módulos digitales a medida por suscripción</h3>
-      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:1rem">Soluciones modulares contratables por función: chatbot de atención, sistema de reservas online, portal de clientes, firma digital de documentos o integración con sistemas existentes.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:4px">
-        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Todos los sectores</span>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-family:var(--mono);font-size:11px;color:var(--txt2)">Entrega en 24 hrs</span>
+        <a href="mailto:ventas@2080.store" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Cotizar ↗</a>
       </div>
     </div>
 
@@ -986,10 +973,10 @@
 
   <div style="border:1px solid var(--border2);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:rgba(100,255,218,.03)" class="reveal">
     <div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.3rem">AGENDA UNA CONSULTA</div>
-      <p style="font-size:13px;color:var(--txt2)">Evaluación gratuita de 30 minutos para analizar las necesidades digitales de tu empresa o consulta.</p>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.3rem">CONSULTA SIN COSTO</div>
+      <p style="font-size:13px;color:var(--txt2);max-width:480px">Conversación inicial de 30 minutos para analizar las necesidades de tu negocio y proponer la solución más adecuada.</p>
     </div>
-    <a href="mailto:ventas@2080.store" class="btn btn-primary">Contactar ahora</a>
+    <a href="mailto:ventas@2080.store" class="btn btn-primary">Escribir ahora ↗</a>
   </div>
 </section>
 
