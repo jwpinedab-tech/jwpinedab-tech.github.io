@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacqueline Bastias Pineda — Dev & AI Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #050508;
+    --bg2: #0c0c12;
+    --bg3: #12121c;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #00e5c8;
+    --accent2: #ff6b35;
+    --accent3: #c8f542;
+    --txt: #e2dff0;
+    --txt2: #7c7a96;
+    --txt3: #3e3c52;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Playfair Display', serif;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transition: transform .15s ease, opacity .2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border: 1px solid rgba(0,229,200,.4); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transition: transform .08s ease;
+    transform: translate(-12px,-12px);
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none; z-index: 1000;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 58px;
+    background: rgba(5,5,8,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent); letter-spacing: 2px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo::before {
+    content: '>';
+    animation: blink 1.2s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--txt2); text-decoration: none;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-accent-line {
+    position: absolute; top: 0; left: 3rem; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    opacity: .3;
+  }
+  .hero-content { position: relative; max-width: 900px; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent2); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--accent2);
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900; line-height: .95;
+    margin-bottom: .3em; letter-spacing: -2px;
+    opacity: 0; animation: fadeUp .7s .35s forwards;
+  }
+  .hero-name .line2 {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,.25);
+    display: block;
+  }
+  .hero-name .accent-word { color: var(--accent); -webkit-text-stroke: 0; }
+  .hero-role {
+    font-family: var(--mono); font-size: 14px;
+    color: var(--txt2); margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+  .hero-role span { color: var(--accent3); }
+  .hero-desc {
+    font-size: 16px; color: var(--txt2); max-width: 520px;
+    line-height: 1.8; margin-bottom: 2.5rem;
+    font-weight: 300;
+    opacity: 0; animation: fadeUp .7s .65s forwards;
+  }
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    opacity: 0; animation: fadeUp .7s .8s forwards;
+  }
+  .btn {
+    font-family: var(--mono); font-size: 12px;
+    padding: 10px 22px; border-radius: 3px;
+    text-decoration: none; letter-spacing: 1px;
+    text-transform: uppercase; transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    cursor: none;
+  }
+  .btn-primary {
+    background: var(--accent); color: #000; border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+  .btn-ghost {
+    background: transparent; color: var(--txt2);
+    border: 1px solid var(--border2);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-chips {
+    position: absolute; right: 3rem; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0; animation: fadeLeft .8s 1s forwards;
+  }
+  .hero-chip {
+    font-family: var(--mono); font-size: 10px;
+    padding: 5px 12px; border: 1px solid var(--border2);
+    border-radius: 2px; color: var(--txt3);
+    transition: all .2s; white-space: nowrap;
+  }
+  .hero-chip:hover { border-color: var(--accent3); color: var(--accent3); }
+  .hero-chip.on { border-color: var(--accent); color: var(--accent); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px;
+    color: var(--txt3); letter-spacing: 2px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp .6s 1.2s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--txt3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: .3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  .sec-header { margin-bottom: 3rem; }
+  .sec-number {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--txt3); letter-spacing: 3px; margin-bottom: .5rem;
+  }
+  .sec-title {
+    font-family: var(--serif); font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700; line-height: 1.1; margin-bottom: .5rem;
+  }
+  .sec-title em { color: var(--accent); font-style: normal; }
+  .sec-rule {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--accent), transparent);
+  }
+
+  /* SOBRE MÍ */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start;
+  }
+  .about-text p { color: var(--txt2); margin-bottom: 1rem; font-size: 15px; line-height: 1.9; }
+  .about-text strong { color: var(--txt); font-weight: 500; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-box {
+    background: var(--bg2); padding: 1.5rem;
+    transition: background .2s;
+  }
+  .stat-box:hover { background: var(--bg3); }
+  .stat-val {
+    font-family: var(--serif); font-size: 36px;
+    color: var(--accent); font-weight: 700; line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .stat-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--txt3); letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); margin-bottom: 2rem;
+  }
+  .skill-cat { background: var(--bg2); padding: 1.5rem; }
+  .skill-cat-title {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent2); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 1rem;
+    padding-bottom: .5rem; border-bottom: 1px solid var(--border);
+  }
+  .skill-list { display: flex; flex-direction: column; gap: 6px; }
+  .skill-item {
+    font-family: var(--mono); font-size: 12px; color: var(--txt2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-item::before {
+    content: '▸'; color: var(--accent3); font-size: 10px;
+  }
+
+  /* PROYECTOS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border);
+  }
+  .project-card {
+    background: var(--bg2); padding: 2rem;
+    transition: background .25s; position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0);
+    transform-origin: left; transition: transform .3s;
+  }
+  .project-card:hover { background: var(--bg3); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card.featured::before { transform: scaleX(1); background: var(--accent2); }
+  .p-tag {
+    font-family: var(--mono); font-size: 10px;
+    padding: 3px 10px; border-radius: 2px; display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .p-tag.ai { background: rgba(0,229,200,.1); color: var(--accent); border: 1px solid rgba(0,229,200,.25); }
+  .p-tag.web { background: rgba(200,245,66,.1); color: var(--accent3); border: 1px solid rgba(200,245,66,.25); }
+  .p-tag.edu { background: rgba(255,107,53,.1); color: var(--accent2); border: 1px solid rgba(255,107,53,.25); }
+  .p-title {
+    font-family: var(--serif); font-size: 22px;
+    font-weight: 700; margin-bottom: .6rem; line-height: 1.2;
+  }
+  .p-desc { font-size: 13px; color: var(--txt2); margin-bottom: 1.2rem; line-height: 1.7; }
+  .p-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
+  .p-stack span {
+    font-family: var(--mono); font-size: 10px;
+    padding: 2px 8px; background: rgba(255,255,255,.04);
+    border: 1px solid var(--border); color: var(--txt3);
+    border-radius: 2px;
+  }
+  .p-metrics {
+    border-top: 1px solid var(--border); padding-top: 1rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .p-metric { display: flex; flex-direction: column; gap: 2px; }
+  .p-metric-val {
+    font-family: var(--mono); font-size: 16px;
+    color: var(--accent); font-weight: 600;
+  }
+  .p-metric-label { font-size: 11px; color: var(--txt3); }
+
+  /* CASO DE ESTUDIO */
+  .caso-wrap {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .caso-header {
+    padding: 2rem; border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .caso-header h3 {
+    font-family: var(--serif); font-size: 28px; font-weight: 700;
+  }
+  .caso-header h3 span { color: var(--accent); }
+  .caso-body {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .caso-block {
+    padding: 1.5rem 2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .caso-block:nth-child(even) { border-right: none; }
+  .caso-block.full {
+    grid-column: 1 / -1; border-right: none;
+  }
+  .caso-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent3); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: .7rem;
+  }
+  .caso-block p, .caso-block li {
+    font-size: 13px; color: var(--txt2); line-height: 1.7;
+  }
+  .caso-block ul { padding-left: 1.2rem; }
+  .caso-block li { margin-bottom: .3rem; }
+  .metrics-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border-bottom: 1px solid var(--border);
+  }
+  .m-cell {
+    padding: 1.5rem; text-align: center;
+    border-right: 1px solid var(--border);
+    background: rgba(0,229,200,.03);
+  }
+  .m-cell:last-child { border-right: none; }
+  .m-val {
+    font-family: var(--serif); font-size: 28px;
+    color: var(--accent); font-weight: 700; line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .m-lbl { font-family: var(--mono); font-size: 10px; color: var(--txt3); }
+  .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag-skill {
+    font-family: var(--mono); font-size: 11px;
+    padding: 3px 10px; border-radius: 2px;
+    background: rgba(0,229,200,.07);
+    border: 1px solid rgba(0,229,200,.2);
+    color: var(--accent);
+  }
+
+  /* FODA */
+  .foda-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .foda-cell { background: var(--bg2); padding: 1.8rem; }
+  .foda-cell:hover { background: var(--bg3); }
+  .foda-ttl {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 1rem; padding-bottom: .5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .foda-ttl::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+  }
+  .foda-ttl.f { color: var(--accent); }
+  .foda-ttl.f::before { background: var(--accent); }
+  .foda-ttl.d { color: #f7c948; }
+  .foda-ttl.d::before { background: #f7c948; }
+  .foda-ttl.o { color: var(--accent2); }
+  .foda-ttl.o::before { background: var(--accent2); }
+  .foda-ttl.a { color: #ff4d6d; }
+  .foda-ttl.a::before { background: #ff4d6d; }
+  .foda-item {
+    font-size: 12px; color: var(--txt2); margin-bottom: .5rem;
+    display: flex; gap: 8px; line-height: 1.5;
+  }
+  .foda-n {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--txt3); min-width: 18px; margin-top: 1px;
+  }
+
+  /* CONTACTO */
+  .contact-wrap {
+    border: 1px solid var(--border); background: var(--bg2);
+    padding: 3rem; text-align: center;
+  }
+  .contact-wrap h2 {
+    font-family: var(--serif); font-size: 42px;
+    font-weight: 700; margin-bottom: .5rem;
+  }
+  .contact-wrap h2 em { color: var(--accent); font-style: normal; }
+  .contact-wrap p { color: var(--txt2); margin-bottom: 2rem; font-size: 15px; }
+  .contact-links {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 2rem;
+  }
+  .contact-link {
+    font-family: var(--mono); font-size: 12px;
+    padding: 10px 20px; border: 1px solid var(--border2);
+    color: var(--txt2); text-decoration: none;
+    transition: all .2s; border-radius: 2px; cursor: none;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link.gh { border-color: var(--accent3); color: var(--accent3); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-family: var(--mono); font-size: 11px; color: var(--txt3);
+  }
+  .footer-status {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); display: flex; align-items: center; gap: 8px;
+  }
+  .status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); animation: pulse 2s infinite;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 5rem 1.5rem 4rem; }
+    .hero-chips { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .caso-body { grid-template-columns: 1fr; }
+    .caso-block.full, .caso-block { border-right: none; }
+    .metrics-strip { grid-template-columns: 1fr 1fr; }
+    .foda-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">JWB.dev</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">sobre mí</a></li>
+    <li><a href="#proyectos">proyectos</a></li>
+    <li><a href="#caso">caso de estudio</a></li>
+    <li><a href="#foda">foda</a></li>
+    <li><a href="#contacto">contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Santiago, Chile — disponible para trabajo remoto</div>
+    <h1 class="hero-name">
+      Jacqueline
+      <span class="line2">Bastias <span class="accent-word">Pineda</span></span>
+    </h1>
+    <div class="hero-role">
+      Dev · AI Architect · <span>IoT Engineer</span> · Founder 2080.store
+    </div>
+    <p class="hero-desc">
+      Construyo sistemas de inteligencia artificial que funcionan en producción real.
+      Agentes LLM, microservicios cloud, automatización IoT y soluciones para el mercado latinoamericano.
+    </p>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn btn-ghost">Contactar</a>
+      <a href="https://github.com/2080bp" class="btn btn-ghost" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-chips">
+    <span class="hero-chip on">Python 3.12</span>
+    <span class="hero-chip on">Gemini API</span>
+    <span class="hero-chip on">Kubernetes / GKE</span>
+    <span class="hero-chip">FastAPI</span>
+    <span class="hero-chip">Docker</span>
+    <span class="hero-chip">MQTT / IoT</span>
+    <span class="hero-chip">LangChain</span>
+    <span class="hero-chip">React / Firebase</span>
+    <span class="hero-chip">Google Cloud</span>
+    <span class="hero-chip">WordPress / WooCommerce</span>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="sec-header reveal">
+    <div class="sec-number">// 01</div>
+    <h2 class="sec-title">Sobre <em>mí</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>Soy una <strong>desarrolladora y arquitecta de soluciones tecnológicas</strong> con base en Santiago, Chile. Dirijo mi propia empresa de ingeniería y diseño tecnológico, donde llevo proyectos desde la idea hasta producción — sola.</p>
+      <p>Mi especialidad es integrar <strong>inteligencia artificial generativa</strong> con sistemas reales: agentes LLM que controlan hardware, microservicios en la nube que escalan, y aplicaciones que resuelven problemas concretos del mercado latinoamericano.</p>
+      <p>Aprendí a orquestar Kubernetes desde Google Cloud Shell, sin PC local, construyendo un sistema de domótica comercial. Eso dice bastante de cómo enfrento los problemas.</p>
+      <p>Correo: <strong>jw.pinedab@gmail.com</strong> · ventas@2080.store<br>
+      Tel: <strong>+56 9 5853 7599</strong><br>
+      GitHub: <a href="https://github.com/2080bp" target="_blank">github.com/2080bp</a> · <a href="https://github.com/jwpinedab-tech" target="_blank">github.com/jwpinedab-tech</a></p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-val">3+</div>
+          <div class="stat-label">proyectos en producción</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">GKE</div>
+          <div class="stat-label">despliegue real en cloud</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">&lt;2s</div>
+          <div class="stat-label">latencia agente IA → IoT</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">$24M</div>
+          <div class="stat-label">CLP proyección año 1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;" class="reveal">
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-title">Inteligencia Artificial</div>
+        <div class="skill-list">
+          <span class="skill-item">Gemini API (Google AI)</span>
+          <span class="skill-item">LangChain</span>
+          <span class="skill-item">CrewAI</span>
+          <span class="skill-item">Prompt Engineering</span>
+          <span class="skill-item">Agentes LLM</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Backend & Cloud</div>
+        <div class="skill-list">
+          <span class="skill-item">Python 3.12 · FastAPI</span>
+          <span class="skill-item">Docker · Kubernetes</span>
+          <span class="skill-item">Google Cloud Platform</span>
+          <span class="skill-item">Cloud Run · GKE</span>
+          <span class="skill-item">GitHub Actions CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">IoT & Automatización</div>
+        <div class="skill-list">
+          <span class="skill-item">MQTT · Mosquitto</span>
+          <span class="skill-item">Home Assistant</span>
+          <span class="skill-item">Protocolos IoT</span>
+          <span class="skill-item">ESP32 / Microcontroladores</span>
+          <span class="skill-item">Integración hardware-software</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Frontend & E-commerce</div>
+        <div class="skill-list">
+          <span class="skill-item">React · JSX · Firebase</span>
+          <span class="skill-item">WordPress · WooCommerce</span>
+          <span class="skill-item">SSL · DNS · Hosting</span>
+          <span class="skill-item">Pasarelas de pago</span>
+          <span class="skill-item">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" style="max-width:1100px">
+  <div class="sec-header reveal">
+    <div class="sec-number">// 02</div>
+    <h2 class="sec-title">Mis <em>proyectos</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="projects-grid reveal">
+
+    <div class="project-card featured">
+      <span class="p-tag ai">IA + IoT + Cloud</span>
+      <h3 class="p-title">Domótica Pro</h3>
+      <p class="p-desc">Sistema profesional de automatización del hogar con agente IA conversacional en español. Procesa comandos de voz con Gemini API y controla dispositivos físicos en tiempo real vía MQTT. Desplegado en GKE.</p>
+      <div class="p-stack">
+        <span>Python 3.12</span><span>Gemini API</span><span>FastAPI</span>
+        <span>MQTT</span><span>Home Assistant</span><span>Docker</span><span>GKE</span>
+      </div>
+      <div class="p-metrics">
+        <div class="p-metric">
+          <span class="p-metric-val">&lt;2s</span>
+          <span class="p-metric-label">latencia total</span>
+        </div>
+        <div class="p-metric">
+          <span class="p-metric-val">$24M+</span>
+          <span class="p-metric-label">CLP proyección año 1</span>
+        </div>
+        <div class="p-metric">
+          <span class="p-metric-val">live</span>
+          <span class="p-metric-label">en producción GKE</span>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://github.com/2080bp/domotica-pro" target="_blank" class="btn btn-primary" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag edu">EdTech · IA</span>
+      <h3 class="p-title">App Educacional</h3>
+      <p class="p-desc">Aplicación educacional interactiva desarrollada durante el bootcamp. Interfaz dinámica con jQuery y lógica de aprendizaje progresivo. Base para la futura versión con IA y repetición espaciada para TDAH.</p>
+      <div class="p-stack">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span>
+      </div>
+      <div class="p-metrics">
+        <div class="p-metric">
+          <span class="p-metric-val">live</span>
+          <span class="p-metric-label">en GitHub</span>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://github.com/jwpinedab-tech/app-educacional" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag web">Web · jQuery</span>
+      <h3 class="p-title">Billetera Digital</h3>
+      <p class="p-desc">Aplicación de billetera digital con jQuery. Gestión de transacciones, saldos y movimientos con interfaz dinámica. Proyecto del bootcamp demostrando manejo del DOM y lógica financiera.</p>
+      <div class="p-stack">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>jQuery</span>
+      </div>
+      <div class="p-metrics">
+        <div class="p-metric">
+          <span class="p-metric-val">live</span>
+          <span class="p-metric-label">en GitHub</span>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://github.com/jwpinedab-tech/L6_Billetera_JQuery_V2" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Ver código ↗</a>
+        <a href="https://github.com/jwpinedab-tech/proyecto_web_basico" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:5px 12px">Proyecto web ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-tag web">E-commerce</span>
+      <h3 class="p-title">2080.store</h3>
+      <p class="p-desc">Tienda online operativa con integración de pasarelas de pago y gestión de datos de clientes. Migración completa desde Tienda Nube a Google Cloud Hosting con resolución de SSL y configuración DNS.</p>
+      <div class="p-stack">
+        <span>WordPress</span><span>WooCommerce</span><span>Google Cloud</span>
+        <span>SSL/TLS</span><span>DNS</span><span>Payment APIs</span>
+      </div>
+      <div class="p-metrics">
+        <div class="p-metric">
+          <span class="p-metric-val">live</span>
+          <span class="p-metric-label">2080.store</span>
+        </div>
+        <div class="p-metric">
+          <span class="p-metric-val">0-down</span>
+          <span class="p-metric-label">migración exitosa</span>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://2080.store" target="_blank" class="btn btn-primary" style="font-size:11px;padding:5px 12px">Ver tienda ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASO DE ESTUDIO -->
+<section id="caso" style="max-width:1100px">
+  <div class="sec-header reveal">
+    <div class="sec-number">// 03</div>
+    <h2 class="sec-title">Caso de <em>estudio</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="caso-wrap reveal">
+    <div class="caso-header">
+      <div>
+        <h3>Domótica Pro — <span>Agente IA + IoT</span></h3>
+        <p style="font-size:13px;color:var(--txt2);margin-top:.3rem;font-family:var(--mono)">Python · Gemini API · MQTT · GKE · FastAPI · Docker</p>
+      </div>
+      <span class="p-tag ai" style="margin:0">caso de estudio</span>
+    </div>
+
+    <div class="metrics-strip">
+      <div class="m-cell">
+        <div class="m-val">&lt;2s</div>
+        <div class="m-lbl">comando → acción dispositivo</div>
+      </div>
+      <div class="m-cell">
+        <div class="m-val">3</div>
+        <div class="m-lbl">capas integradas LLM + MQTT + HA</div>
+      </div>
+      <div class="m-cell">
+        <div class="m-val">$24M</div>
+        <div class="m-lbl">CLP proyección ingresos año 1</div>
+      </div>
+      <div class="m-cell">
+        <div class="m-val">GKE</div>
+        <div class="m-lbl">despliegue en producción real</div>
+      </div>
+    </div>
+
+    <div class="caso-body">
+      <div class="caso-block">
+        <p class="caso-label">descripción</p>
+        <p>Sistema de automatización del hogar con agente IA conversacional en español. Procesa comandos de voz mediante Gemini API y ejecuta acciones sobre dispositivos IoT reales en tiempo real vía MQTT.</p>
+      </div>
+      <div class="caso-block">
+        <p class="caso-label">desafío principal</p>
+        <p>Integrar tres capas radicalmente distintas — LLM en la nube, broker MQTT y Home Assistant — coordinando autenticación, latencia y errores. Todo desde Google Cloud Shell sin PC local.</p>
+      </div>
+      <div class="caso-block full">
+        <p class="caso-label">solución</p>
+        <p>Arquitectura de 3 microservicios: (1) API Gateway FastAPI para recibir comandos transcritos, (2) Agente LLM con Gemini que interpreta intención y genera instrucciones estructuradas, (3) Servicio MQTT que publica al dispositivo en Home Assistant. Docker Compose local + Kubernetes en producción + CI/CD con GitHub Actions.</p>
+      </div>
+      <div class="caso-block">
+        <p class="caso-label">aprendizajes clave</p>
+        <ul>
+          <li>Diseño de agentes IA en producción real</li>
+          <li>Orquestación Kubernetes sin recursos locales</li>
+          <li>Prompt engineering para acciones hardware</li>
+          <li>Gestión de secretos y configuración segura en GKE</li>
+          <li>Documentación técnica + plan de negocio</li>
+        </ul>
+      </div>
+      <div class="caso-block">
+        <p class="caso-label">herramientas</p>
+        <ul>
+          <li>Python 3.12 · FastAPI · Pydantic</li>
+          <li>Gemini API · LangChain · CrewAI</li>
+          <li>MQTT · Mosquitto · Home Assistant</li>
+          <li>Docker · Kubernetes · GKE</li>
+          <li>GitHub Actions · Cloud Run</li>
+        </ul>
+      </div>
+      <div class="caso-block full">
+        <p class="caso-label">habilidades aplicadas</p>
+        <div class="tags-wrap">
+          <span class="tag-skill">Arquitectura de software</span>
+          <span class="tag-skill">Python avanzado</span>
+          <span class="tag-skill">APIs REST</span>
+          <span class="tag-skill">Google Cloud Platform</span>
+          <span class="tag-skill">Containerización</span>
+          <span class="tag-skill">Kubernetes</span>
+          <span class="tag-skill">Protocolos IoT</span>
+          <span class="tag-skill">Prompt Engineering</span>
+          <span class="tag-skill">Agentes LLM</span>
+          <span class="tag-skill">DevOps / CI-CD</span>
+          <span class="tag-skill">Documentación técnica</span>
+          <span class="tag-skill">Pensamiento sistémico</span>
+        </div>
+      </div>
+      <div class="caso-block full">
+        <p class="caso-label">¿por qué este proyecto?</p>
+        <p style="color:var(--txt2);font-size:13px;line-height:1.8">Domótica Pro sintetiza todo lo que sé hacer: Python, arquitectura cloud, IA generativa y visión de negocio. Es real, está en producción y tiene impacto medible. Para empresas que operan microservicios y agentes IA a escala — como Mercado Libre — demuestra que cuento con la mentalidad y las herramientas para contribuir desde el primer día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FODA -->
+<section id="foda">
+  <div class="sec-header reveal">
+    <div class="sec-number">// 04</div>
+    <h2 class="sec-title">Análisis <em>FODA</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="foda-grid reveal">
+    <div class="foda-cell">
+      <h4 class="foda-ttl f">Fortalezas</h4>
+      <div class="foda-item"><span class="foda-n">F1</span><span>Experiencia real en despliegue de agentes IA en producción (GKE)</span></div>
+      <div class="foda-item"><span class="foda-n">F2</span><span>Dominio de Python, Docker y Kubernetes en entornos cloud reales</span></div>
+      <div class="foda-item"><span class="foda-n">F3</span><span>Visión de negocio: emprendedora tech con tienda online operativa</span></div>
+      <div class="foda-item"><span class="foda-n">F4</span><span>Aprendizaje autónomo demostrado operando solo desde Cloud Shell</span></div>
+      <div class="foda-item"><span class="foda-n">F5</span><span>Integración de stacks complejos: LLM + IoT + cloud + frontend</span></div>
+    </div>
+    <div class="foda-cell">
+      <h4 class="foda-ttl d">Debilidades</h4>
+      <div class="foda-item"><span class="foda-n">D1</span><span>Inglés técnico intermedio; producción escrita a fortalecer</span></div>
+      <div class="foda-item"><span class="foda-n">D2</span><span>Sin experiencia en equipos corporativos grandes ni SDLC formal</span></div>
+      <div class="foda-item"><span class="foda-n">D3</span><span>Algunos proyectos del portafolio sin documentación completa</span></div>
+      <div class="foda-item"><span class="foda-n">D4</span><span>Testing automatizado (TDD/BDD) en desarrollo</span></div>
+      <div class="foda-item"><span class="foda-n">D5</span><span>Sin certificaciones formales cloud que validen el conocimiento</span></div>
+    </div>
+    <div class="foda-cell">
+      <h4 class="foda-ttl o">Oportunidades</h4>
+      <div class="foda-item"><span class="foda-n">O1</span><span>Alta demanda no cubierta de perfiles IA/ML en Chile (~5.000 vacantes/año)</span></div>
+      <div class="foda-item"><span class="foda-n">O2</span><span>Empresas latam adoptando IA generativa sin especialistas disponibles</span></div>
+      <div class="foda-item"><span class="foda-n">O3</span><span>Mercado de automatización del hogar en crecimiento sostenido en Chile</span></div>
+      <div class="foda-item"><span class="foda-n">O4</span><span>Programas de entrada tech corporativo como IT Academy de Mercado Libre</span></div>
+      <div class="foda-item"><span class="foda-n">O5</span><span>Modalidad remota: acceso a posiciones en Argentina, Colombia y México</span></div>
+    </div>
+    <div class="foda-cell">
+      <h4 class="foda-ttl a">Amenazas</h4>
+      <div class="foda-item"><span class="foda-n">A1</span><span>Alta competencia de egresados de bootcamps con perfiles similares</span></div>
+      <div class="foda-item"><span class="foda-n">A2</span><span>Velocidad de cambio tecnológico: herramientas IA evolucionan cada semana</span></div>
+      <div class="foda-item"><span class="foda-n">A3</span><span>Empresas que priorizan títulos universitarios sobre experiencia práctica</span></div>
+      <div class="foda-item"><span class="foda-n">A4</span><span>Automatización de tareas junior por GitHub Copilot, Cursor y similares</span></div>
+      <div class="foda-item"><span class="foda-n">A5</span><span>Brecha salarial para perfiles sin experiencia corporativa formal en Chile</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-wrap reveal">
+    <h2>Trabajemos <em>juntos</em></h2>
+    <p>¿Tienes un proyecto IA, una idea de automatización o necesitas una arquitecta tech? Hablemos.</p>
+    <div class="contact-links">
+      <a href="mailto:jw.pinedab@gmail.com" class="contact-link">jw.pinedab@gmail.com</a>
+      <a href="mailto:ventas@2080.store" class="contact-link">ventas@2080.store</a>
+      <a href="tel:+56958537599" class="contact-link">+56 9 5853 7599</a>
+      <a href="https://github.com/2080bp" target="_blank" class="contact-link gh">github.com/2080bp ↗</a>
+    </div>
+    <a href="https://2080.store" target="_blank" class="btn btn-ghost" style="margin:0 auto">Ver 2080.store ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Jacqueline Wendolyn Bastias Pineda · github.com/2080bp · github.com/jwpinedab-tech</span>
+  <span class="footer-status">
+    <span class="status-dot"></span>
+    disponible para proyectos
+  </span>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 4}px, ${my - 4}px)`;
+  });
+  function animRing() {
+    rx += (mx - rx - 16) * 0.12;
+    ry += (my - ry - 16) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a,button,.project-card,.stat-box,.foda-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2.5)');
+    el.addEventListener('mouseleave', () => {});
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
