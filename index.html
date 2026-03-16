@@ -10,17 +10,17 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a080d;
-    --bg2: #110e16;
-    --bg3: #18141f;
-    --border: rgba(200,170,210,0.08);
-    --border2: rgba(200,170,210,0.18);
-    --accent: #d4a8c7;
-    --accent2: #e8c4b0;
-    --accent3: #b8a0d4;
-    --txt: #f0eaf5;
-    --txt2: #9e8fac;
-    --txt3: #5a4f65;
+    --bg: #0a0a0f;
+    --bg2: #0d0d14;
+    --bg3: #12121c;
+    --border: rgba(100,255,218,0.08);
+    --border2: rgba(100,255,218,0.2);
+    --accent: #64ffda;
+    --accent2: #ccd6f6;
+    --accent3: #8892b0;
+    --txt: #e6f1ff;
+    --txt2: #8892b0;
+    --txt3: #4a5568;
     --mono: 'DM Mono', monospace;
     --serif: 'Cormorant Garamond', serif;
     --sans: 'DM Sans', sans-serif;
@@ -48,7 +48,7 @@
   }
   .cursor-ring {
     position: fixed; width: 28px; height: 28px;
-    border: 1px solid rgba(212,168,199,.35); border-radius: 50%;
+    border: 1px solid rgba(100,255,218,.3); border-radius: 50%;
     pointer-events: none; z-index: 9998;
     transition: transform .08s ease;
     transform: translate(-12px,-12px);
@@ -108,8 +108,8 @@
   .hero-bg-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(200,170,210,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,170,210,0.05) 1px, transparent 1px);
+      linear-gradient(rgba(100,255,218,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,255,218,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
   }
@@ -132,18 +132,20 @@
   }
   .hero-name {
     font-family: var(--serif);
-    font-size: clamp(52px, 9vw, 108px);
+    font-size: clamp(48px, 8vw, 100px);
     font-weight: 300; line-height: .92;
-    margin-bottom: .3em; letter-spacing: -1px;
+    margin-bottom: .3em; letter-spacing: -2px;
     font-style: italic;
     opacity: 0; animation: fadeUp .7s .35s forwards;
   }
   .hero-name .line2 {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(212,168,199,.2);
     display: block; font-style: normal; font-weight: 600;
   }
-  .hero-name .accent-word { color: var(--accent); -webkit-text-stroke: 0; font-style: italic; }
+  .hero-name .bastias {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent);
+  }
+  .hero-name .accent-word { color: var(--accent); font-style: italic; }
   .hero-role {
     font-family: var(--mono); font-size: 14px;
     color: var(--txt2); margin-bottom: 2rem;
@@ -169,7 +171,8 @@
     cursor: none;
   }
   .btn-primary {
-    background: var(--accent); color: #0a080d; border: 1px solid var(--accent);
+    background: var(--accent); color: #0a0a0f; border: 1px solid var(--accent);
+    font-weight: 500;
   }
   .btn-primary:hover { background: transparent; color: var(--accent); }
   .btn-ghost {
@@ -302,9 +305,9 @@
     padding: 3px 10px; border-radius: 2px; display: inline-block;
     margin-bottom: 1rem;
   }
-  .p-tag.ai { background: rgba(212,168,199,.1); color: var(--accent); border: 1px solid rgba(212,168,199,.25); }
-  .p-tag.web { background: rgba(184,160,212,.1); color: var(--accent3); border: 1px solid rgba(184,160,212,.25); }
-  .p-tag.edu { background: rgba(232,196,176,.1); color: var(--accent2); border: 1px solid rgba(232,196,176,.25); }
+  .p-tag.ai { background: rgba(100,255,218,.08); color: var(--accent); border: 1px solid rgba(100,255,218,.2); }
+  .p-tag.web { background: rgba(204,214,246,.06); color: var(--accent2); border: 1px solid rgba(204,214,246,.15); }
+  .p-tag.edu { background: rgba(136,146,176,.06); color: var(--accent3); border: 1px solid rgba(136,146,176,.15); }
   .p-title {
     font-family: var(--serif); font-size: 22px;
     font-weight: 700; margin-bottom: .6rem; line-height: 1.2;
@@ -373,7 +376,7 @@
   .m-cell {
     padding: 1.5rem; text-align: center;
     border-right: 1px solid var(--border);
-    background: rgba(212,168,199,.03);
+    background: rgba(100,255,218,.02);
   }
   .m-cell:last-child { border-right: none; }
   .m-val {
@@ -386,8 +389,8 @@
   .tag-skill {
     font-family: var(--mono); font-size: 11px;
     padding: 3px 10px; border-radius: 2px;
-    background: rgba(212,168,199,.07);
-    border: 1px solid rgba(212,168,199,.2);
+    background: rgba(100,255,218,.06);
+    border: 1px solid rgba(100,255,218,.15);
     color: var(--accent);
   }
 
@@ -415,8 +418,8 @@
   .foda-ttl.d::before { background: var(--accent2); }
   .foda-ttl.o { color: var(--accent3); }
   .foda-ttl.o::before { background: var(--accent3); }
-  .foda-ttl.a { color: #c4a8d4; }
-  .foda-ttl.a::before { background: #c4a8d4; }
+  .foda-ttl.a { color: #a09060; }
+  .foda-ttl.a::before { background: #a09060; }
   .foda-item {
     font-size: 12px; color: var(--txt2); margin-bottom: .5rem;
     display: flex; gap: 8px; line-height: 1.5;
@@ -512,7 +515,7 @@
     <li><a href="#sobre">sobre mí</a></li>
     <li><a href="#proyectos">proyectos</a></li>
     <li><a href="#caso">caso de estudio</a></li>
-    <li><a href="#foda">foda</a></li>
+    <li><a href="#valor">servicios</a></li>
     <li><a href="#contacto">contacto</a></li>
   </ul>
 </nav>
@@ -525,15 +528,14 @@
   <div class="hero-content">
     <div class="hero-eyebrow">Santiago, Chile — disponible para trabajo remoto</div>
     <h1 class="hero-name">
-      Jacqueline
-      <span class="line2">Bastias <span class="accent-word">Pineda</span></span>
+      Jacqueline Wendolyn
+      <span class="line2"><span class="bastias">Bastias</span> <span class="accent-word">Pineda</span></span>
     </h1>
     <div class="hero-role">
       Dev · AI Architect · <span>IoT Engineer</span> · Founder 2080.store
     </div>
     <p class="hero-desc">
-      Construyo sistemas de inteligencia artificial que funcionan en producción real.
-      Agentes LLM, microservicios cloud, automatización IoT y soluciones para el mercado latinoamericano.
+      Diseño e implemento sistemas de inteligencia artificial, arquitecturas cloud y soluciones IoT de alto rendimiento en entornos de producción.
     </p>
     <div class="hero-ctas">
       <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
@@ -571,9 +573,9 @@
   </div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>Soy una <strong>desarrolladora y arquitecta de soluciones tecnológicas</strong> con base en Santiago, Chile. Dirijo mi propia empresa de ingeniería y diseño tecnológico, donde llevo proyectos desde la idea hasta producción — sola.</p>
-      <p>Mi especialidad es integrar <strong>inteligencia artificial generativa</strong> con sistemas reales: agentes LLM que controlan hardware, microservicios en la nube que escalan, y aplicaciones que resuelven problemas concretos del mercado latinoamericano.</p>
-      <p>Aprendí a orquestar Kubernetes desde Google Cloud Shell, sin PC local, construyendo un sistema de domótica comercial. Eso dice bastante de cómo enfrento los problemas.</p>
+      <p><strong>Desarrolladora y arquitecta de soluciones tecnológicas</strong> con base en Santiago, Chile. Dirijo una empresa de ingeniería y diseño tecnológico especializada en el desarrollo de productos digitales de alta complejidad.</p>
+      <p>Mi especialidad es la integración de <strong>inteligencia artificial generativa</strong> con sistemas en producción: agentes LLM, microservicios cloud escalables y plataformas IoT que conectan software con hardware en tiempo real.</p>
+      <p>Capacidad demostrada para diseñar, implementar y desplegar arquitecturas completas en Google Cloud Kubernetes Engine — desde la definición técnica hasta la puesta en producción.</p>
       <p>Correo: <strong>jw.pinedab@gmail.com</strong> · ventas@2080.store<br>
       Tel: <strong>+56 9 5853 7599</strong><br>
       GitHub: <a href="https://github.com/2080bp" target="_blank">github.com/2080bp</a> · <a href="https://github.com/jwpinedab-tech" target="_blank">github.com/jwpinedab-tech</a></p>
@@ -871,46 +873,54 @@
   </div>
 </section>
 
-<!-- FODA -->
-<section id="foda">
+<!-- PROPUESTA DE VALOR -->
+<section id="valor">
   <div class="sec-header reveal">
     <div class="sec-number">// 04</div>
-    <h2 class="sec-title">Análisis <em>FODA</em></h2>
+    <h2 class="sec-title">¿En qué puedo <em>ayudarte?</em></h2>
     <div class="sec-rule"></div>
   </div>
-  <div class="foda-grid reveal">
-    <div class="foda-cell">
-      <h4 class="foda-ttl f">Fortalezas</h4>
-      <div class="foda-item"><span class="foda-n">F1</span><span>Experiencia real en despliegue de agentes IA en producción (GKE)</span></div>
-      <div class="foda-item"><span class="foda-n">F2</span><span>Dominio de Python, Django, Docker y Kubernetes en entornos cloud reales</span></div>
-      <div class="foda-item"><span class="foda-n">F3</span><span>Capacidad de liderar proyectos tech de inicio a producción con visión de negocio</span></div>
-      <div class="foda-item"><span class="foda-n">F4</span><span>Aprendizaje continuo y adaptación rápida a nuevas tecnologías y requerimientos</span></div>
-      <div class="foda-item"><span class="foda-n">F5</span><span>Integración de stacks complejos: LLM + IoT + cloud + frontend + e-commerce</span></div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)" class="reveal">
+
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="font-family:var(--serif);font-size:48px;color:var(--accent);opacity:.25;line-height:1;margin-bottom:.5rem;font-style:italic">01</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:.8rem;font-style:italic">Desarrollo de agentes IA<br>para entornos de producción</h3>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Diseño e implemento agentes conversacionales y de automatización basados en LLMs — desde la arquitectura hasta el despliegue en Google Cloud. Integración con APIs, bases de datos y sistemas existentes.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Gemini API</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">LangChain</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Python</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">FastAPI</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">GKE</span>
+      </div>
     </div>
-    <div class="foda-cell">
-      <h4 class="foda-ttl d">Áreas de crecimiento</h4>
-      <div class="foda-item"><span class="foda-n">D1</span><span>Profundizando inglés técnico para documentación y colaboración internacional</span></div>
-      <div class="foda-item"><span class="foda-n">D2</span><span>Certificando competencias en Full Stack Python — Talento Digital</span></div>
-      <div class="foda-item"><span class="foda-n">D3</span><span>Expandiendo cobertura de testing automatizado (TDD/BDD) en proyectos activos</span></div>
-      <div class="foda-item"><span class="foda-n">D4</span><span>Incorporando metodologías Agile/Scrum en gestión de proyectos propios</span></div>
-      <div class="foda-item"><span class="foda-n">D5</span><span>En proceso de certificación formal Google Cloud para validar experiencia práctica</span></div>
+
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="font-family:var(--serif);font-size:48px;color:var(--accent);opacity:.25;line-height:1;margin-bottom:.5rem;font-style:italic">02</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:.8rem;font-style:italic">Arquitectura de aplicaciones web<br>y APIs de alto rendimiento</h3>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Desarrollo de aplicaciones web completas con Django y Python: APIs REST, gestión de usuarios, bases de datos relacionales y lógica de negocio personalizada. Arquitectura escalable orientada a producción.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Django</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">PostgreSQL</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">React</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Docker</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Firebase</span>
+      </div>
     </div>
-    <div class="foda-cell">
-      <h4 class="foda-ttl o">Oportunidades</h4>
-      <div class="foda-item"><span class="foda-n">O1</span><span>Alta demanda no cubierta de perfiles IA/ML en Chile (~5.000 vacantes/año)</span></div>
-      <div class="foda-item"><span class="foda-n">O2</span><span>Empresas latam adoptando IA generativa sin especialistas disponibles</span></div>
-      <div class="foda-item"><span class="foda-n">O3</span><span>Mercado de automatización del hogar en crecimiento sostenido en Chile</span></div>
-      <div class="foda-item"><span class="foda-n">O4</span><span>Programas de entrada tech corporativo como IT Academy de Mercado Libre</span></div>
-      <div class="foda-item"><span class="foda-n">O5</span><span>Modalidad remota: acceso a posiciones en Argentina, Colombia y México</span></div>
+
+    <div style="background:var(--bg2);padding:2rem;transition:background .2s" onmouseenter="this.style.background='var(--bg3)'" onmouseleave="this.style.background='var(--bg2)'">
+      <div style="font-family:var(--serif);font-size:48px;color:var(--accent);opacity:.25;line-height:1;margin-bottom:.5rem;font-style:italic">03</div>
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:.8rem;font-style:italic">Integración IoT y automatización<br>de procesos industriales</h3>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.8;margin-bottom:1.2rem">Diseño de soluciones que integran dispositivos físicos con plataformas de software inteligente. Implementación de protocolos IoT, control remoto en tiempo real y monitoreo continuo de infraestructura.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">MQTT</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Home Assistant</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Kubernetes</span>
+        <span style="font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border2);color:var(--txt3);border-radius:2px">Google Cloud</span>
+      </div>
     </div>
-    <div class="foda-cell">
-      <h4 class="foda-ttl a">Próximos objetivos</h4>
-      <div class="foda-item"><span class="foda-n">O1</span><span>Obtener certificación oficial Google Cloud Professional Cloud Architect</span></div>
-      <div class="foda-item"><span class="foda-n">O2</span><span>Lanzar App Psicólogos & Pacientes al mercado chileno en 2025</span></div>
-      <div class="foda-item"><span class="foda-n">O3</span><span>Expandir Domótica Pro con kits de instalación para hogares y empresas</span></div>
-      <div class="foda-item"><span class="foda-n">O4</span><span>Contribuir a proyectos open source de IA en Python y LangChain</span></div>
-      <div class="foda-item"><span class="foda-n">O5</span><span>Integrar equipos interdisciplinarios tech aplicando metodologías ágiles</span></div>
-    </div>
+
   </div>
 </section>
 
@@ -918,7 +928,7 @@
 <section id="contacto">
   <div class="contact-wrap reveal">
     <h2>Trabajemos <em>juntos</em></h2>
-    <p>¿Tienes un proyecto IA, una idea de automatización o necesitas una arquitecta tech? Hablemos.</p>
+    <p>Disponible para proyectos de desarrollo, consultoría técnica y posiciones remotas en el sector tecnológico.</p>
     <div class="contact-links">
       <a href="mailto:jw.pinedab@gmail.com" class="contact-link">jw.pinedab@gmail.com</a>
       <a href="mailto:ventas@2080.store" class="contact-link">ventas@2080.store</a>
