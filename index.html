@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacqueline Bastias Pineda — Dev & AI Architect</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #050508;
-    --bg2: #0c0c12;
-    --bg3: #12121c;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.14);
-    --accent: #00e5c8;
-    --accent2: #ff6b35;
-    --accent3: #c8f542;
-    --txt: #e2dff0;
-    --txt2: #7c7a96;
-    --txt3: #3e3c52;
-    --mono: 'IBM Plex Mono', monospace;
-    --serif: 'Playfair Display', serif;
-    --sans: 'IBM Plex Sans', sans-serif;
+    --bg: #0a080d;
+    --bg2: #110e16;
+    --bg3: #18141f;
+    --border: rgba(200,170,210,0.08);
+    --border2: rgba(200,170,210,0.18);
+    --accent: #d4a8c7;
+    --accent2: #e8c4b0;
+    --accent3: #b8a0d4;
+    --txt: #f0eaf5;
+    --txt2: #9e8fac;
+    --txt3: #5a4f65;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'DM Sans', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -40,15 +40,15 @@
 
   /* Custom cursor */
   .cursor {
-    position: fixed; width: 8px; height: 8px;
+    position: fixed; width: 6px; height: 6px;
     background: var(--accent); border-radius: 50%;
     pointer-events: none; z-index: 9999;
     transition: transform .15s ease, opacity .2s;
     mix-blend-mode: screen;
   }
   .cursor-ring {
-    position: fixed; width: 32px; height: 32px;
-    border: 1px solid rgba(0,229,200,.4); border-radius: 50%;
+    position: fixed; width: 28px; height: 28px;
+    border: 1px solid rgba(212,168,199,.35); border-radius: 50%;
     pointer-events: none; z-index: 9998;
     transition: transform .08s ease;
     transform: translate(-12px,-12px);
@@ -108,8 +108,8 @@
   .hero-bg-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      linear-gradient(rgba(200,170,210,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,170,210,0.05) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
   }
@@ -132,17 +132,18 @@
   }
   .hero-name {
     font-family: var(--serif);
-    font-size: clamp(48px, 8vw, 96px);
-    font-weight: 900; line-height: .95;
-    margin-bottom: .3em; letter-spacing: -2px;
+    font-size: clamp(52px, 9vw, 108px);
+    font-weight: 300; line-height: .92;
+    margin-bottom: .3em; letter-spacing: -1px;
+    font-style: italic;
     opacity: 0; animation: fadeUp .7s .35s forwards;
   }
   .hero-name .line2 {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,.25);
-    display: block;
+    -webkit-text-stroke: 1px rgba(212,168,199,.2);
+    display: block; font-style: normal; font-weight: 600;
   }
-  .hero-name .accent-word { color: var(--accent); -webkit-text-stroke: 0; }
+  .hero-name .accent-word { color: var(--accent); -webkit-text-stroke: 0; font-style: italic; }
   .hero-role {
     font-family: var(--mono); font-size: 14px;
     color: var(--txt2); margin-bottom: 2rem;
@@ -168,7 +169,7 @@
     cursor: none;
   }
   .btn-primary {
-    background: var(--accent); color: #000; border: 1px solid var(--accent);
+    background: var(--accent); color: #0a080d; border: 1px solid var(--accent);
   }
   .btn-primary:hover { background: transparent; color: var(--accent); }
   .btn-ghost {
@@ -247,8 +248,8 @@
   .stat-box:hover { background: var(--bg3); }
   .stat-val {
     font-family: var(--serif); font-size: 36px;
-    color: var(--accent); font-weight: 700; line-height: 1;
-    margin-bottom: .3rem;
+    color: var(--accent); font-weight: 600; line-height: 1;
+    margin-bottom: .3rem; font-style: italic;
   }
   .stat-label {
     font-family: var(--mono); font-size: 10px;
@@ -301,9 +302,9 @@
     padding: 3px 10px; border-radius: 2px; display: inline-block;
     margin-bottom: 1rem;
   }
-  .p-tag.ai { background: rgba(0,229,200,.1); color: var(--accent); border: 1px solid rgba(0,229,200,.25); }
-  .p-tag.web { background: rgba(200,245,66,.1); color: var(--accent3); border: 1px solid rgba(200,245,66,.25); }
-  .p-tag.edu { background: rgba(255,107,53,.1); color: var(--accent2); border: 1px solid rgba(255,107,53,.25); }
+  .p-tag.ai { background: rgba(212,168,199,.1); color: var(--accent); border: 1px solid rgba(212,168,199,.25); }
+  .p-tag.web { background: rgba(184,160,212,.1); color: var(--accent3); border: 1px solid rgba(184,160,212,.25); }
+  .p-tag.edu { background: rgba(232,196,176,.1); color: var(--accent2); border: 1px solid rgba(232,196,176,.25); }
   .p-title {
     font-family: var(--serif); font-size: 22px;
     font-weight: 700; margin-bottom: .6rem; line-height: 1.2;
@@ -323,7 +324,7 @@
   .p-metric { display: flex; flex-direction: column; gap: 2px; }
   .p-metric-val {
     font-family: var(--mono); font-size: 16px;
-    color: var(--accent); font-weight: 600;
+    color: var(--accent); font-weight: 500;
   }
   .p-metric-label { font-size: 11px; color: var(--txt3); }
 
@@ -372,21 +373,21 @@
   .m-cell {
     padding: 1.5rem; text-align: center;
     border-right: 1px solid var(--border);
-    background: rgba(0,229,200,.03);
+    background: rgba(212,168,199,.03);
   }
   .m-cell:last-child { border-right: none; }
   .m-val {
     font-family: var(--serif); font-size: 28px;
-    color: var(--accent); font-weight: 700; line-height: 1;
-    margin-bottom: .3rem;
+    color: var(--accent); font-weight: 600; line-height: 1;
+    margin-bottom: .3rem; font-style: italic;
   }
   .m-lbl { font-family: var(--mono); font-size: 10px; color: var(--txt3); }
   .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag-skill {
     font-family: var(--mono); font-size: 11px;
     padding: 3px 10px; border-radius: 2px;
-    background: rgba(0,229,200,.07);
-    border: 1px solid rgba(0,229,200,.2);
+    background: rgba(212,168,199,.07);
+    border: 1px solid rgba(212,168,199,.2);
     color: var(--accent);
   }
 
@@ -410,12 +411,12 @@
   }
   .foda-ttl.f { color: var(--accent); }
   .foda-ttl.f::before { background: var(--accent); }
-  .foda-ttl.d { color: #f7c948; }
-  .foda-ttl.d::before { background: #f7c948; }
-  .foda-ttl.o { color: var(--accent2); }
-  .foda-ttl.o::before { background: var(--accent2); }
-  .foda-ttl.a { color: #ff4d6d; }
-  .foda-ttl.a::before { background: #ff4d6d; }
+  .foda-ttl.d { color: var(--accent2); }
+  .foda-ttl.d::before { background: var(--accent2); }
+  .foda-ttl.o { color: var(--accent3); }
+  .foda-ttl.o::before { background: var(--accent3); }
+  .foda-ttl.a { color: #c4a8d4; }
+  .foda-ttl.a::before { background: #c4a8d4; }
   .foda-item {
     font-size: 12px; color: var(--txt2); margin-bottom: .5rem;
     display: flex; gap: 8px; line-height: 1.5;
