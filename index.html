@@ -26,7 +26,22 @@
     --sans: 'DM Sans', sans-serif;
   }
 
+  [data-theme="light"] {
+    --bg: #f8f9fc;
+    --bg2: #ffffff;
+    --bg3: #eef1f7;
+    --border: rgba(0,150,120,0.12);
+    --border2: rgba(0,150,120,0.25);
+    --accent: #007a63;
+    --accent2: #2d4a8a;
+    --accent3: #4a5568;
+    --txt: #0f1624;
+    --txt2: #4a5568;
+    --txt3: #8892b0;
+  }
+
   html { scroll-behavior: smooth; }
+  *, *::before, *::after { transition: background-color .3s ease, border-color .3s ease, color .3s ease; }
 
   body {
     background: var(--bg);
@@ -37,6 +52,8 @@
     cursor: none;
     overflow-x: hidden;
   }
+
+  @media(max-width: 768px) { body { cursor: auto; } }
 
   /* Custom cursor */
   .cursor {
@@ -72,37 +89,71 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 500;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 58px;
-    background: rgba(5,5,8,0.88);
+    padding: 0 4rem; height: 58px;
+    background: rgba(10,10,15,0.92);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
+  [data-theme="light"] nav { background: rgba(248,249,252,0.95); }
   .nav-logo {
     font-family: var(--mono); font-size: 12px;
     color: var(--accent); letter-spacing: 2px;
     display: flex; align-items: center; gap: 8px;
   }
-  .nav-logo::before {
-    content: '>';
-    animation: blink 1.2s step-end infinite;
-  }
+  .nav-logo::before { content: '>'; animation: blink 1.2s step-end infinite; }
   @keyframes blink { 50% { opacity: 0; } }
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
     font-family: var(--mono); font-size: 11px;
     color: var(--txt2); text-decoration: none;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    transition: color .2s;
+    letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s;
   }
   .nav-links a:hover { color: var(--accent); }
+
+  /* TOGGLE TEMA */
+  .theme-toggle {
+    background: none; border: 1px solid var(--border2);
+    color: var(--txt2); cursor: pointer; padding: 5px 10px;
+    border-radius: 3px; font-family: var(--mono); font-size: 11px;
+    transition: all .2s; display: flex; align-items: center; gap: 6px;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* MENÚ HAMBURGUESA */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--txt2); border-radius: 2px;
+    transition: all .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* MENÚ MÓVIL */
+  .mobile-menu {
+    display: none; position: fixed; top: 58px; left: 0; right: 0;
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem; z-index: 499; flex-direction: column; gap: 1rem;
+    backdrop-filter: blur(16px);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--mono); font-size: 13px; color: var(--txt2);
+    text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: .5rem 0; border-bottom: 1px solid var(--border); transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
 
   /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 6rem 3rem 4rem;
+    padding: 6rem 5rem 4rem;
     position: relative; overflow: hidden;
   }
   .hero-bg-grid {
@@ -215,7 +266,7 @@
   }
 
   /* SECTIONS */
-  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+  section { padding: 6rem 5rem; max-width: 1100px; margin: 0 auto; }
 
   .sec-header { margin-bottom: 3rem; }
   .sec-number {
@@ -491,6 +542,7 @@
   @media(max-width: 768px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
     section { padding: 4rem 1.5rem; }
     .hero { padding: 5rem 1.5rem 4rem; }
     .hero-chips { display: none; }
@@ -500,6 +552,7 @@
     .metrics-strip { grid-template-columns: 1fr 1fr; }
     .foda-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; text-align: center; }
+    .theme-toggle span { display: none; }
   }
 </style>
 </head>
@@ -511,15 +564,34 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">JWB.dev</div>
-  <ul class="nav-links">
-    <li><a href="#sobre">sobre mí</a></li>
-    <li><a href="#proyectos">proyectos</a></li>
-    <li><a href="#caso">caso de estudio</a></li>
-    <li><a href="#valor">servicios</a></li>
-    <li><a href="#servicios">clientes</a></li>
-    <li><a href="#contacto">contacto</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#sobre">sobre mí</a></li>
+      <li><a href="#proyectos">proyectos</a></li>
+      <li><a href="#caso">caso de estudio</a></li>
+      <li><a href="#valor">servicios</a></li>
+      <li><a href="#servicios">clientes</a></li>
+      <li><a href="#contacto">contacto</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+      <span id="themeIcon">☀</span>
+      <span>modo claro</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMenu()">sobre mí</a>
+  <a href="#proyectos" onclick="closeMenu()">proyectos</a>
+  <a href="#caso" onclick="closeMenu()">caso de estudio</a>
+  <a href="#valor" onclick="closeMenu()">servicios</a>
+  <a href="#servicios" onclick="clientes">clientes</a>
+  <a href="#contacto" onclick="closeMenu()">contacto</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -983,16 +1055,57 @@
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="contact-wrap reveal">
-    <h2>Trabajemos <em>juntos</em></h2>
-    <p>Disponible para proyectos de desarrollo, consultoría técnica y posiciones remotas en el sector tecnológico.</p>
-    <div class="contact-links">
-      <a href="mailto:jw.pinedab@gmail.com" class="contact-link">jw.pinedab@gmail.com</a>
-      <a href="mailto:ventas@2080.store" class="contact-link">ventas@2080.store</a>
-      <a href="tel:+56958537599" class="contact-link">+56 9 5853 7599</a>
-      <a href="https://github.com/2080bp" target="_blank" class="contact-link gh">github.com/2080bp — empresarial ↗</a>
-      <a href="https://github.com/jwpinedab-tech" target="_blank" class="contact-link gh">github.com/jwpinedab-tech — bootcamp ↗</a>
+    <h2>¿Hablamos de tu <em>proyecto?</em></h2>
+    <p>Disponible para proyectos de desarrollo, servicios digitales, consultoría técnica y posiciones remotas en el sector tecnológico.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem;text-align:left">
+
+      <!-- FORMULARIO -->
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:1rem">ENVÍA UN MENSAJE</div>
+        <form id="contactForm" style="display:flex;flex-direction:column;gap:.8rem">
+          <input type="text" id="fname" placeholder="Nombre completo" required
+            style="background:var(--bg2);border:1px solid var(--border2);color:var(--txt);padding:.8rem 1rem;font-family:var(--mono);font-size:12px;border-radius:3px;outline:none;width:100%">
+          <input type="email" id="femail" placeholder="Correo electrónico" required
+            style="background:var(--bg2);border:1px solid var(--border2);color:var(--txt);padding:.8rem 1rem;font-family:var(--mono);font-size:12px;border-radius:3px;outline:none;width:100%">
+          <input type="tel" id="fphone" placeholder="Teléfono (opcional)"
+            style="background:var(--bg2);border:1px solid var(--border2);color:var(--txt);padding:.8rem 1rem;font-family:var(--mono);font-size:12px;border-radius:3px;outline:none;width:100%">
+          <select id="fservice"
+            style="background:var(--bg2);border:1px solid var(--border2);color:var(--txt2);padding:.8rem 1rem;font-family:var(--mono);font-size:12px;border-radius:3px;outline:none;width:100%">
+            <option value="">Tipo de servicio</option>
+            <option>Sitio web profesional</option>
+            <option>Chatbot con IA</option>
+            <option>Contenido para redes sociales</option>
+            <option>Optimización LinkedIn + CV</option>
+            <option>Aplicación web a medida</option>
+            <option>Otro</option>
+          </select>
+          <textarea id="fmessage" placeholder="Cuéntame sobre tu proyecto..." rows="4" required
+            style="background:var(--bg2);border:1px solid var(--border2);color:var(--txt);padding:.8rem 1rem;font-family:var(--mono);font-size:12px;border-radius:3px;outline:none;width:100%;resize:vertical"></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:12px">
+            Enviar mensaje ↗
+          </button>
+          <div id="formMsg" style="font-family:var(--mono);font-size:11px;text-align:center;display:none"></div>
+        </form>
+      </div>
+
+      <!-- DATOS DE CONTACTO -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.5rem">CONTACTO DIRECTO</div>
+        <div class="contact-links" style="flex-direction:column;align-items:flex-start;gap:.6rem">
+          <a href="mailto:ventas@2080.store" class="contact-link">ventas@2080.store</a>
+          <a href="mailto:jw.pinedab@gmail.com" class="contact-link">jw.pinedab@gmail.com</a>
+          <a href="tel:+56958537599" class="contact-link">+56 9 5853 7599</a>
+          <a href="https://github.com/2080bp" target="_blank" class="contact-link gh">github.com/2080bp ↗</a>
+          <a href="https://github.com/jwpinedab-tech" target="_blank" class="contact-link gh">github.com/jwpinedab-tech ↗</a>
+          <a href="https://www.linkedin.com/in/jacquelinebastiaspineda/" target="_blank" class="contact-link gh">LinkedIn ↗</a>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:1.5rem">
+          <a href="https://2080.store" target="_blank" class="btn btn-ghost">Ver 2080.store ↗</a>
+        </div>
+      </div>
+
     </div>
-    <a href="https://2080.store" target="_blank" class="btn btn-ghost" style="margin:0 auto">Ver 2080.store ↗</a>
   </div>
 </section>
 
@@ -1005,7 +1118,60 @@
 </footer>
 
 <script>
-  // Cursor
+  // ── TEMA CLARO/OSCURO ──
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') !== 'light';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀';
+    document.querySelector('.theme-toggle span:last-child').textContent = isDark ? 'modo oscuro' : 'modo claro';
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.getElementById('themeIcon').textContent = '🌙';
+  }
+
+  // ── MENÚ HAMBURGUESA ──
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const ham = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    ham.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  // ── FORMULARIO DE CONTACTO ──
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const msg = document.getElementById('formMsg');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    const name = document.getElementById('fname').value;
+    const email = document.getElementById('femail').value;
+    const phone = document.getElementById('fphone').value;
+    const service = document.getElementById('fservice').value;
+    const message = document.getElementById('fmessage').value;
+
+    // Envío via mailto como fallback confiable
+    const subject = encodeURIComponent(`Contacto portafolio — ${service || 'Consulta'}`);
+    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nServicio: ${service}\n\nMensaje:\n${message}`);
+    window.location.href = `mailto:ventas@2080.store?subject=${subject}&body=${body}`;
+
+    msg.style.display = 'block';
+    msg.style.color = 'var(--accent)';
+    msg.textContent = '✓ Abriendo tu cliente de correo...';
+    btn.textContent = 'Enviar mensaje ↗';
+    btn.disabled = false;
+  });
+
+  // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1020,12 +1186,8 @@
     requestAnimationFrame(animRing);
   }
   animRing();
-  document.querySelectorAll('a,button,.project-card,.stat-box,.foda-cell').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2.5)');
-    el.addEventListener('mouseleave', () => {});
-  });
 
-  // Scroll reveal
+  // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
