@@ -42,6 +42,8 @@
 
   html { scroll-behavior: smooth; }
   *, *::before, *::after { transition: background-color .3s ease, border-color .3s ease, color .3s ease; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent); opacity: .8; }
 
   body {
     background: var(--bg);
@@ -291,15 +293,15 @@
   .about-text p { color: var(--txt2); margin-bottom: 1rem; font-size: 15px; line-height: 1.9; }
   .about-text strong { color: var(--txt); font-weight: 500; }
   .about-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
   }
   .stat-box {
-    background: var(--bg2); padding: 1.5rem;
-    transition: background .2s;
+    background: transparent;
+    border: 1px solid var(--border2);
+    padding: 1.5rem; border-radius: 4px;
+    transition: border-color .2s;
   }
-  .stat-box:hover { background: var(--bg3); }
+  .stat-box:hover { border-color: var(--accent); }
   .stat-val {
     font-family: var(--serif); font-size: 36px;
     color: var(--accent); font-weight: 600; line-height: 1;
@@ -307,17 +309,22 @@
   }
   .stat-label {
     font-family: var(--mono); font-size: 10px;
-    color: var(--txt3); letter-spacing: 1px;
+    color: var(--txt2); letter-spacing: 1px;
     text-transform: uppercase;
   }
 
   /* SKILLS */
   .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border); margin-bottom: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; margin-bottom: 2rem;
   }
-  .skill-cat { background: var(--bg2); padding: 1.5rem; }
+  .skill-cat {
+    background: transparent;
+    border: 1px solid var(--border2);
+    padding: 1.5rem; border-radius: 4px;
+    transition: border-color .2s;
+  }
+  .skill-cat:hover { border-color: var(--accent); }
   .skill-cat-title {
     font-family: var(--mono); font-size: 10px;
     color: var(--accent); letter-spacing: 2px;
@@ -329,19 +336,20 @@
     font-family: var(--mono); font-size: 12px; color: var(--txt);
     display: flex; align-items: center; gap: 8px;
   }
-  .skill-item::before {
-    content: '▸'; color: var(--accent); font-size: 10px;
-  }
+  .skill-item::before { content: '▸'; color: var(--accent); font-size: 10px; }
 
   /* PROYECTOS */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: 1px; background: var(--border); border: 1px solid var(--border);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 12px;
   }
   .project-card {
-    background: var(--bg2); padding: 1.8rem;
-    transition: background .25s; position: relative; overflow: hidden;
+    background: transparent;
+    border: 1px solid var(--border2);
+    padding: 1.8rem; border-radius: 4px;
+    transition: border-color .25s, background .25s;
+    position: relative; overflow: hidden;
     display: flex; flex-direction: column;
   }
   .project-card::before {
@@ -350,151 +358,87 @@
     background: var(--accent); transform: scaleX(0);
     transform-origin: left; transition: transform .3s;
   }
-  .project-card:hover { background: var(--bg3); }
+  .project-card:hover { border-color: var(--accent); background: rgba(100,255,218,.02); }
   .project-card:hover::before { transform: scaleX(1); }
-  .project-card.featured::before { transform: scaleX(1); background: var(--accent); }
+  .project-card.featured { border-color: var(--accent); }
+  .project-card.featured::before { transform: scaleX(1); }
   .p-tag {
     font-family: var(--mono); font-size: 10px;
     padding: 3px 10px; border-radius: 2px; display: inline-block;
     margin-bottom: 1rem; letter-spacing: 1px;
+    background: rgba(100,255,218,.08); color: var(--accent);
+    border: 1px solid rgba(100,255,218,.25);
   }
-  .p-tag.ai { background: rgba(100,255,218,.08); color: var(--accent); border: 1px solid rgba(100,255,218,.25); }
-  .p-tag.web { background: rgba(100,255,218,.08); color: var(--accent); border: 1px solid rgba(100,255,218,.25); }
-  .p-tag.edu { background: rgba(100,255,218,.08); color: var(--accent); border: 1px solid rgba(100,255,218,.25); }
   .p-title {
     font-family: var(--serif); font-size: 22px;
-    font-weight: 600; margin-bottom: .6rem; line-height: 1.2;
-    color: var(--txt);
+    font-weight: 600; margin-bottom: .6rem; line-height: 1.2; color: var(--txt);
   }
   .p-desc { font-size: 13px; color: var(--txt2); margin-bottom: 1.2rem; line-height: 1.7; flex: 1; }
   .p-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.2rem; }
   .p-stack span {
-    font-family: var(--mono); font-size: 10px;
-    padding: 3px 8px;
-    background: rgba(100,255,218,.05);
-    border: 1px solid rgba(100,255,218,.2);
-    color: var(--accent);
-    border-radius: 2px;
+    font-family: var(--mono); font-size: 10px; padding: 3px 8px;
+    background: rgba(100,255,218,.05); border: 1px solid rgba(100,255,218,.2);
+    color: var(--accent); border-radius: 2px;
   }
 
   /* CASO DE ESTUDIO */
-  .caso-wrap {
-    border: 1px solid var(--border);
-    background: var(--bg2);
-  }
+  .caso-wrap { border: 1px solid var(--border2); border-radius: 4px; overflow: hidden; }
   .caso-header {
     padding: 2rem; border-bottom: 1px solid var(--border);
-    background: var(--bg3);
+    background: rgba(100,255,218,.03);
     display: flex; justify-content: space-between; align-items: flex-start;
     flex-wrap: wrap; gap: 1rem;
   }
-  .caso-header h3 {
-    font-family: var(--serif); font-size: 28px; font-weight: 700;
-  }
+  .caso-header h3 { font-family: var(--serif); font-size: 28px; font-weight: 700; }
   .caso-header h3 span { color: var(--accent); }
-  .caso-body {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
+  .caso-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .caso-block {
     padding: 1.5rem 2rem;
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
   .caso-block:nth-child(even) { border-right: none; }
-  .caso-block.full {
-    grid-column: 1 / -1; border-right: none;
-  }
+  .caso-block.full { grid-column: 1 / -1; border-right: none; }
   .caso-label {
     font-family: var(--mono); font-size: 10px;
-    color: var(--accent3); letter-spacing: 2px;
+    color: var(--accent); letter-spacing: 2px;
     text-transform: uppercase; margin-bottom: .7rem;
   }
-  .caso-block p, .caso-block li {
-    font-size: 13px; color: var(--txt2); line-height: 1.7;
-  }
+  .caso-block p, .caso-block li { font-size: 13px; color: var(--txt2); line-height: 1.7; }
   .caso-block ul { padding-left: 1.2rem; }
   .caso-block li { margin-bottom: .3rem; }
   .metrics-strip {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 0; border-bottom: 1px solid var(--border);
-  }
-  .m-cell {
-    padding: 1.5rem; text-align: center;
-    border-right: 1px solid var(--border);
     background: rgba(100,255,218,.02);
   }
+  .m-cell { padding: 1.5rem; text-align: center; border-right: 1px solid var(--border); }
   .m-cell:last-child { border-right: none; }
   .m-val {
     font-family: var(--serif); font-size: 28px;
     color: var(--accent); font-weight: 600; line-height: 1;
     margin-bottom: .3rem; font-style: italic;
   }
-  .m-lbl { font-family: var(--mono); font-size: 10px; color: var(--txt3); }
+  .m-lbl { font-family: var(--mono); font-size: 10px; color: var(--txt2); }
   .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag-skill {
-    font-family: var(--mono); font-size: 11px;
-    padding: 3px 10px; border-radius: 2px;
-    background: rgba(100,255,218,.06);
-    border: 1px solid rgba(100,255,218,.15);
-    color: var(--accent);
-  }
-
-  /* FODA */
-  .foda-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0; background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .foda-cell { background: var(--bg2); padding: 1.8rem; }
-  .foda-cell:hover { background: var(--bg3); }
-  .foda-ttl {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 1rem; padding-bottom: .5rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .foda-ttl::before {
-    content: ''; width: 8px; height: 8px; border-radius: 50%;
-  }
-  .foda-ttl.f { color: var(--accent); }
-  .foda-ttl.f::before { background: var(--accent); }
-  .foda-ttl.d { color: var(--accent2); }
-  .foda-ttl.d::before { background: var(--accent2); }
-  .foda-ttl.o { color: var(--accent3); }
-  .foda-ttl.o::before { background: var(--accent3); }
-  .foda-ttl.a { color: #a09060; }
-  .foda-ttl.a::before { background: #a09060; }
-  .foda-item {
-    font-size: 12px; color: var(--txt2); margin-bottom: .5rem;
-    display: flex; gap: 8px; line-height: 1.5;
-  }
-  .foda-n {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--txt3); min-width: 18px; margin-top: 1px;
+    font-family: var(--mono); font-size: 11px; padding: 3px 10px; border-radius: 2px;
+    background: rgba(100,255,218,.06); border: 1px solid rgba(100,255,218,.15); color: var(--accent);
   }
 
   /* CONTACTO */
   .contact-wrap {
-    border: 1px solid var(--border); background: var(--bg2);
+    border: 1px solid var(--border2); border-radius: 4px;
     padding: 3rem; text-align: center;
   }
-  .contact-wrap h2 {
-    font-family: var(--serif); font-size: 42px;
-    font-weight: 700; margin-bottom: .5rem;
-  }
+  .contact-wrap h2 { font-family: var(--serif); font-size: 42px; font-weight: 700; margin-bottom: .5rem; }
   .contact-wrap h2 em { color: var(--accent); font-style: normal; }
   .contact-wrap p { color: var(--txt2); margin-bottom: 2rem; font-size: 15px; }
-  .contact-links {
-    display: flex; justify-content: center;
-    flex-wrap: wrap; gap: 12px; margin-bottom: 2rem;
-  }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 2rem; }
   .contact-link {
-    font-family: var(--mono); font-size: 12px;
-    padding: 10px 20px; border: 1px solid var(--border2);
-    color: var(--txt2); text-decoration: none;
-    transition: all .2s; border-radius: 2px; cursor: none;
+    font-family: var(--mono); font-size: 12px; padding: 10px 20px;
+    border: 1px solid var(--border2); color: var(--txt2);
+    text-decoration: none; transition: all .2s; border-radius: 2px; cursor: none;
   }
   .contact-link:hover { border-color: var(--accent); color: var(--accent); }
   .contact-link.gh { border-color: var(--border2); color: var(--txt2); }
@@ -534,20 +478,53 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
+  @media(max-width: 1024px) {
+    nav { padding: 0 2rem; }
+    section { padding: 5rem 3rem; }
+    .hero { padding: 6rem 3rem 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+    .caso-body { grid-template-columns: 1fr; }
+    .caso-block, .caso-block.full { border-right: none; grid-column: auto; }
+  }
+
   @media(max-width: 768px) {
-    nav { padding: 0 1.5rem; }
+    nav { padding: 0 1.2rem; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 5rem 1.5rem 4rem; }
+    .theme-toggle span:last-child { display: none; }
+    section { padding: 4rem 1.2rem; }
+    .hero { padding: 5rem 1.2rem 3rem; }
     .hero-chips { display: none; }
+    .hero-name { font-size: clamp(36px, 10vw, 64px); letter-spacing: -1px; }
+    .hero-role { font-size: 12px; }
+    .hero-desc { font-size: 14px; }
+    .hero-ctas { gap: 8px; }
+    .btn { padding: 8px 16px; font-size: 11px; }
     .about-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .projects-grid { grid-template-columns: 1fr; gap: 8px; }
     .caso-body { grid-template-columns: 1fr; }
-    .caso-block.full, .caso-block { border-right: none; }
+    .caso-block, .caso-block.full { border-right: none; grid-column: auto; }
     .metrics-strip { grid-template-columns: 1fr 1fr; }
-    .foda-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; }
-    .theme-toggle span { display: none; }
+    .contact-wrap { padding: 2rem 1.2rem; }
+    .contact-wrap h2 { font-size: 28px; }
+    .contact-wrap > div[style*="grid"] { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    footer { flex-direction: column; text-align: center; gap: .5rem; }
+    .sec-title { font-size: clamp(24px, 7vw, 40px); }
+  }
+
+  @media(max-width: 480px) {
+    section { padding: 3rem 1rem; }
+    .hero { padding: 4.5rem 1rem 3rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .stat-val { font-size: 28px; }
+    .hero-name { font-size: clamp(32px, 9vw, 52px); }
+    .metrics-strip { grid-template-columns: 1fr 1fr; }
+    .m-val { font-size: 20px; }
+    .contact-links { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
@@ -561,7 +538,8 @@
   <div class="nav-logo">JWB.dev</div>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#sobre">sobre mí</a></li>
+      <li><a href="#fullstack">full stack</a></li>
+    <li><a href="#sobre">sobre mí</a></li>
       <li><a href="#proyectos">proyectos</a></li>
       <li><a href="#caso">caso de estudio</a></li>
       <li><a href="#valor">servicios</a></li>
@@ -580,6 +558,7 @@
 
 <!-- MENÚ MÓVIL -->
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#fullstack" onclick="closeMenu()">full stack</a>
   <a href="#sobre" onclick="closeMenu()">sobre mí</a>
   <a href="#proyectos" onclick="closeMenu()">proyectos</a>
   <a href="#caso" onclick="closeMenu()">caso de estudio</a>
@@ -600,13 +579,15 @@
       <span class="line2"><span class="bastias">Bastias</span> <span class="accent-word">Pineda</span></span>
     </h1>
     <div class="hero-role">
-      Dev · AI Architect · <span>IoT Engineer</span> · Founder 2080.store
+      Full Stack Python · <span>AI Architect</span> · IoT · Founder 2080.store
     </div>
     <p class="hero-desc">
-      Diseño e implemento sistemas de inteligencia artificial, arquitecturas cloud y soluciones IoT de alto rendimiento en entornos de producción.
+      Frontend. Backend. Cloud. Inteligencia Artificial.<br>
+      <strong style="color:var(--txt)">Todo el stack. Un solo interlocutor.</strong>
     </p>
     <div class="hero-ctas">
-      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href="#fullstack" class="btn btn-primary">Ver stack completo</a>
+      <a href="#servicios" class="btn btn-ghost">Servicios</a>
       <a href="#contacto" class="btn btn-ghost">Contactar</a>
       <a href="https://github.com/2080bp" class="btn btn-ghost" target="_blank">GitHub ↗</a>
     </div>
@@ -631,6 +612,83 @@
     scroll
   </div>
 </div>
+
+<!-- FULL STACK -->
+<section id="fullstack" style="max-width:1100px">
+  <div class="sec-header reveal">
+    <div class="sec-number">// 01.5</div>
+    <h2 class="sec-title">Full Stack <em>Python</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <p style="font-size:15px;color:var(--txt2);max-width:600px;margin-bottom:2.5rem;line-height:1.8" class="reveal">
+    Desarrollo completo de extremo a extremo — desde la interfaz que ve el usuario hasta la infraestructura que lo sostiene. Sin depender de terceros para cada capa.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin-bottom:2rem" class="reveal">
+
+    <div style="border:1px solid var(--border2);border-radius:4px;padding:1.5rem;transition:border-color .2s" onmouseenter="this.style.borderColor='var(--accent)'" onmouseleave="this.style.borderColor='var(--border2)'">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">FRONTEND</div>
+      <h4 style="font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;margin-bottom:.6rem">Lo que ve el usuario</h4>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:.8rem">Interfaces modernas, responsivas y optimizadas para conversión. Rápidas en cualquier dispositivo.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">React</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">HTML/CSS</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">JavaScript</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">WordPress</span>
+      </div>
+    </div>
+
+    <div style="border:1px solid var(--border2);border-radius:4px;padding:1.5rem;transition:border-color .2s" onmouseenter="this.style.borderColor='var(--accent)'" onmouseleave="this.style.borderColor='var(--border2)'">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">BACKEND</div>
+      <h4 style="font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;margin-bottom:.6rem">La lógica del negocio</h4>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:.8rem">APIs robustas, gestión de usuarios, bases de datos, autenticación y toda la lógica que hace funcionar tu producto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Python 3.12</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Django</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">FastAPI</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">PostgreSQL</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Firebase</span>
+      </div>
+    </div>
+
+    <div style="border:1px solid var(--border2);border-radius:4px;padding:1.5rem;transition:border-color .2s" onmouseenter="this.style.borderColor='var(--accent)'" onmouseleave="this.style.borderColor='var(--border2)'">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">INTELIGENCIA ARTIFICIAL</div>
+      <h4 style="font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;margin-bottom:.6rem">El cerebro del sistema</h4>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:.8rem">Agentes conversacionales, automatización inteligente y modelos LLM integrados directamente en tu producto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Gemini API</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">LangChain</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">CrewAI</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div style="border:1px solid var(--border2);border-radius:4px;padding:1.5rem;transition:border-color .2s" onmouseenter="this.style.borderColor='var(--accent)'" onmouseleave="this.style.borderColor='var(--border2)'">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.8rem">CLOUD & DEVOPS</div>
+      <h4 style="font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;margin-bottom:.6rem">En producción real</h4>
+      <p style="font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:.8rem">Despliegue en la nube, contenedores, CI/CD y monitoreo. Tu producto disponible 24/7 sin que tengas que preocuparte por la infraestructura.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Google Cloud</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Docker</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">Kubernetes</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(100,255,218,.25);color:var(--accent);border-radius:2px;background:rgba(100,255,218,.05)">GitHub Actions</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="border:1px solid var(--accent);border-radius:4px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:rgba(100,255,218,.03)" class="reveal">
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px;margin-bottom:.3rem">PARA EMPLEADORES</div>
+      <p style="font-size:13px;color:var(--txt2)">Perfil técnico completo, proyectos en producción y código en GitHub disponible para revisión.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="#proyectos" class="btn btn-ghost" style="font-size:11px;padding:6px 14px">Ver proyectos ↗</a>
+      <a href="https://github.com/2080bp" target="_blank" class="btn btn-primary" style="font-size:11px;padding:6px 14px">GitHub ↗</a>
+    </div>
+  </div>
+</section>
 
 <!-- SOBRE MÍ -->
 <section id="sobre">
