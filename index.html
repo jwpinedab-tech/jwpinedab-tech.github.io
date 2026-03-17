@@ -1146,27 +1146,40 @@
   }
 
   // ── FORMULARIO DE CONTACTO ──
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = this.querySelector('button[type="submit"]');
     const msg = document.getElementById('formMsg');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
 
-    const name = document.getElementById('fname').value;
-    const email = document.getElementById('femail').value;
-    const phone = document.getElementById('fphone').value;
-    const service = document.getElementById('fservice').value;
-    const message = document.getElementById('fmessage').value;
+    const data = {
+      name: document.getElementById('fname').value,
+      email: document.getElementById('femail').value,
+      phone: document.getElementById('fphone').value,
+      service: document.getElementById('fservice').value,
+      message: document.getElementById('fmessage').value
+    };
 
-    // Envío via mailto como fallback confiable
-    const subject = encodeURIComponent(`Contacto portafolio — ${service || 'Consulta'}`);
-    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nServicio: ${service}\n\nMensaje:\n${message}`);
-    window.location.href = `mailto:ventas@2080.store?subject=${subject}&body=${body}`;
-
-    msg.style.display = 'block';
-    msg.style.color = 'var(--accent)';
-    msg.textContent = '✓ Abriendo tu cliente de correo...';
+    try {
+      const res = await fetch('https://formspree.io/f/mzdjjlgq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        msg.style.display = 'block';
+        msg.style.color = 'var(--accent)';
+        msg.textContent = '✓ Mensaje enviado. Te contactaré pronto.';
+        document.getElementById('contactForm').reset();
+      } else {
+        throw new Error('Error');
+      }
+    } catch {
+      msg.style.display = 'block';
+      msg.style.color = '#ff6b6b';
+      msg.textContent = '✗ Error al enviar. Escríbeme directo a ventas@2080.store';
+    }
     btn.textContent = 'Enviar mensaje ↗';
     btn.disabled = false;
   });
