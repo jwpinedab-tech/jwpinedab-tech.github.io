@@ -157,6 +157,8 @@
     display: flex; flex-direction: column; justify-content: center;
     padding: 5rem 5rem 3rem;
     position: relative; overflow: hidden;
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    box-sizing: border-box;
   }
   .hero-bg-grid {
     position: absolute; inset: 0;
@@ -171,7 +173,7 @@
     width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent);
     opacity: .3;
   }
-  .hero-content { position: relative; max-width: 900px; }
+  .hero-content { position: relative; max-width: 900px; margin: 0 auto; width: 100%; }
   .hero-eyebrow {
     font-family: var(--mono); font-size: 11px;
     color: var(--accent2); letter-spacing: 3px;
@@ -287,8 +289,9 @@
 
   /* SOBRE MÍ */
   .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-    align-items: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 3rem; align-items: start;
   }
   .about-text p { color: var(--txt2); margin-bottom: 1rem; font-size: 15px; line-height: 1.9; }
   .about-text strong { color: var(--txt); font-weight: 500; }
@@ -932,7 +935,7 @@
     <h2>¿Hablamos de tu <em>proyecto?</em></h2>
     <p>Disponible para proyectos de desarrollo, consultoría técnica y posiciones remotas en el sector tecnológico.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem;text-align:left">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:2rem;margin-top:2rem;text-align:left">
 
       <!-- FORMULARIO -->
       <div>
